@@ -2,7 +2,7 @@ from selenium.webdriver.common.by import By
 from pages.base_page import BasePage
 
 class RegisterPage(BasePage):
-    ENTER_ACCOUNT_TITLE = (By.XPATH, "/html/body/section/div/div/div/div/h2/b")
+    ENTER_ACCOUNT_TITLE = (By.XPATH, "//b[contains(text(), 'Enter Account Information')]")
     TITLE_GENDER2 = (By.ID, "id_gender2")
     TITLE_GENDER1 = (By.ID, "id_gender1")    
     REGISTER_NAME = (By.ID, "name")
@@ -25,9 +25,9 @@ class RegisterPage(BasePage):
     SIGNUP_BUTTON = (By.CSS_SELECTOR, "button[data-qa='create-account']")
     ACCOUNT_CREATED_TEXT = (By.CSS_SELECTOR, "h2[data-qa='account-created']")
     CONTINUE_BUTTON = (By.CSS_SELECTOR, "a[data-qa='continue-button']")
-    LOGGED_IN = (By.XPATH, "//a[contains(text(), 'Logged in as')]")
+    LOGGED_IN = (By.XPATH, "//a[contains(., 'Logged in as')]")
     DELETE_BTN = (By.CSS_SELECTOR, ".fa.fa-trash-o")
-    ACCOUNT_DELETED = (By.XPATH, "/html/body/section/div/div/div/h2/b")
+    ACCOUNT_DELETED = (By.XPATH, "//b[contains(text(), 'Account Deleted!')]")
     
 
     URL = "/signup"
@@ -74,8 +74,8 @@ class RegisterPage(BasePage):
     def is_account_created_visible(self):
         return self.is_visible(self.ACCOUNT_CREATED_TEXT)
     
-    def is_user_logged_in(self):
-        return self.is_visible(self.LOGGED_IN)
+    def is_user_logged_in(self, name):
+        return name in self.get_text(self.LOGGED_IN)
     
     def delete_account(self):
         self.click(self.DELETE_BTN)

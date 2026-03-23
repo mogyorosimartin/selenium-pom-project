@@ -17,7 +17,7 @@ class TestRegister:
         register_page.register(REGISTER_USER)
         assert register_page.is_account_created_visible()
         register_page.click_continue()
-        assert register_page.is_user_logged_in()
+        assert register_page.is_user_logged_in(REGISTER_USER["name"])
         register_page.delete_account()
         assert register_page.is_account_deleted_visible()
         register_page.click_continue()
