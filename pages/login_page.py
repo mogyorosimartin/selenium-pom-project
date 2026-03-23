@@ -21,6 +21,15 @@ class LoginPage(BasePage):
         self.type(self.EMAIL_INPUT, email)
         self.type(self.PASSWORD_INPUT, password)
         self.click(self.LOGIN_BUTTON)
+    
+    def signup(self, name, email):
+        self.type(self.SIGNUP_NAME, name)
+        self.type(self.SIGNUP_EMAIL, email)
+        self.click(self.SIGNUP_BUTTON)
+    
+    def signup_visible(self):
+        self.is_visible(self.SIGNUP_BUTTON)
+
 
     def get_error_message(self):
         return self.get_text(self.ERROR_MESSAGE)

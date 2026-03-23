@@ -2,6 +2,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import TimeoutException
+from selenium.webdriver.support.ui import Select
 
 
 class BasePage:
@@ -49,3 +50,7 @@ class BasePage:
             consent_btn.click()
         except TimeoutException:
             pass
+        
+    def select_dropdown(self, locator, value):
+        element = self.find(locator)
+        Select(element).select_by_visible_text(value)
