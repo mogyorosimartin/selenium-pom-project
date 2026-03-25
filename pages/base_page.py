@@ -33,7 +33,7 @@ class BasePage:
 
     def is_visible(self, locator):
         try:
-            return self.find(locator).is_displayed()
+            return self.wait.until(EC.visibility_of_element_located(locator))
         except:
             return False
 

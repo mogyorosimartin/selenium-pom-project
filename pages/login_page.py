@@ -11,6 +11,9 @@ class LoginPage(BasePage):
     SIGNUP_NAME = (By.CSS_SELECTOR, "input[data-qa='signup-name']")
     SIGNUP_EMAIL = (By.CSS_SELECTOR, "input[data-qa='signup-email']")
     SIGNUP_BUTTON = (By.CSS_SELECTOR, "button[data-qa='signup-button']")
+    LOGIN_PROMPT = (By.XPATH, "//h2[contains(text(),'Login to your account')]")
+    SIGNUP_PROMPT = (By.XPATH, "//h2[contains(text(),'New User Signup!')]")
+    LOGOUT_BUTTON = (By.XPATH, "//a[contains(text(),'Logout')]")
 
     URL = "/login"
 
@@ -28,7 +31,7 @@ class LoginPage(BasePage):
         self.click(self.SIGNUP_BUTTON)
     
     def signup_visible(self):
-        self.is_visible(self.SIGNUP_BUTTON)
+        return self.is_visible(self.SIGNUP_PROMPT)
 
 
     def get_error_message(self):
@@ -36,3 +39,9 @@ class LoginPage(BasePage):
 
     def is_error_displayed(self):
         return self.is_visible(self.ERROR_MESSAGE)
+    
+    def is_Login_Prompt_visible(self):
+        return self.is_visible(self.LOGIN_PROMPT)
+    
+    def logout(self):
+        self.click(self.LOGOUT_BUTTON)

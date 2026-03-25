@@ -8,6 +8,7 @@ class HomePage(BasePage):
     NAV_LOGIN = (By.LINK_TEXT, "Signup / Login")
     NAV_LOGGED_IN_AS = (By.CSS_SELECTOR, "li a b")
     PRODUCTS_SECTION = (By.CSS_SELECTOR, ".features_items")
+    CAROUSEL = (By.ID,"slider-carousel")
 
     URL = "/"
 
@@ -27,3 +28,7 @@ class HomePage(BasePage):
 
     def is_products_section_visible(self):
         return self.is_visible(self.PRODUCTS_SECTION)
+    
+    def is_homepage_visible(self):
+        return self.is_visible(self.CAROUSEL)
+    
