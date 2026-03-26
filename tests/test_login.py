@@ -12,7 +12,7 @@ class TestLogin:
         home_page.go_to_login()
         
         login_page = LoginPage(driver)
-        assert login_page.is_Login_Prommpt_visible()
+        assert login_page.is_Login_Prompt_visible()
         login_page.login("wrong@email.com", "wrongpassword")
 
         assert login_page.is_error_displayed()
@@ -25,7 +25,7 @@ class TestLogin:
         home_page.go_to_login()
         
         login_page = LoginPage(driver)
-        assert login_page.is_Login_Prommpt_visible()
+        assert login_page.is_Login_Prompt_visible()
         login_page.login(
             os.getenv("TEST_EMAIL"),
             os.getenv("TEST_PASSWORD")
@@ -61,7 +61,7 @@ class TestLogin:
         home_page.go_to_login()
         
         login_page = LoginPage(driver)
-        assert login_page.is_Login_Prommpt_visible()
+        assert login_page.is_Login_Prompt_visible()
         login_page.login(
             os.getenv("TEST_EMAIL"),
             os.getenv("TEST_PASSWORD")
@@ -73,4 +73,4 @@ class TestLogin:
         assert len(username) > 0
         
         login_page.logout()
-        assert login_page.is_Login_Prommpt_visible()
+        assert login_page.is_Login_Prompt_visible()

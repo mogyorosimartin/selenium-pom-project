@@ -12,6 +12,9 @@ class BasePage:
 
 
     COOKIE_CONSENT_BUTTON = (By.CSS_SELECTOR, "button.fc-cta-consent")
+    SUBSCRIBE_FIELD = ( By.ID,"susbscribe_email")
+    SUBSCRIBE_BUTTON = ( By.ID,"subscribe")
+    SUB_SUCCESS = (By.XPATH, "//h2[contains(text(),'You have been successfully subscribed!')]")
 
     def open(self, url):
         self.driver.get(url)        
@@ -54,3 +57,19 @@ class BasePage:
     def select_dropdown(self, locator, value):
         element = self.find(locator)
         Select(element).select_by_visible_text(value)
+        
+    def scroll_to_footer(self):
+        footer = self.find((By.CSS_SELECTOR, "footer"))
+        self.driver.execute_script("arguments[0].scrollIntoView();", footer)
+    
+    def fill_send_subscribe_form(self, email):
+        field = self.find(self.SUBSCRIBE_FIELD)
+        field.clear()
+        field.send_keys(email)
+        self.click(self.SUBSCRIBE_BUTTON)
+        
+    def sub_success_visible(self):
+        return self.is_visible(self.SUB_SUCCESS)
+    
+    def format_locator(self, locator, *args):
+        return (locator[0], locator[1].format(*args))

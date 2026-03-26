@@ -34,3 +34,7 @@ REGISTER_USER = {
     "zipcode": "90001",
     "mobile_number": "1234567890"
 }
+
+EMAIL = {
+    "email": f"test_{uuid.uuid4().hex[:8]}@test.com"
+}

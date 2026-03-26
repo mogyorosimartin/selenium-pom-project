@@ -2,11 +2,13 @@ from selenium.webdriver.common.by import By
 from pages.base_page import BasePage
 
 
-class SearchPage(BasePage):
+class ProductsPage(BasePage):
     SEARCH_INPUT = (By.ID, "search_product")
     SEARCH_BUTTON = (By.ID, "submit_search")
     SEARCH_RESULTS = (By.CSS_SELECTOR, ".productinfo")
     NO_RESULTS_TEXT = (By.CSS_SELECTOR, ".features_items p")
+    ALL_PRODUCTS_PROMPT = (By.XPATH, "//h2[contains(text(),'All Products')]")
+    SEARCHED_PRODUCTS_PROMPT = (By.XPATH, "//h2[contains(text(),'Searched Products')]")
 
     URL = "/products"
 
@@ -19,6 +21,12 @@ class SearchPage(BasePage):
 
     def has_results(self):
         return self.is_visible(self.SEARCH_RESULTS)
+    
+    def is_searched_products_visible(self):
+        return self.is_visible(self.SEARCHED_PRODUCTS_PROMPT)
 
     def get_no_results_text(self):
         return self.get_text(self.NO_RESULTS_TEXT)
+    
+    def is_products_visible(self):
+        return self.is_visible(self.ALL_PRODUCTS_PROMPT)
