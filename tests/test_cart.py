@@ -6,7 +6,7 @@ class TestCart:
     def test_cart_add_product(self, driver, base_url):
         home_page = HomePage(driver)
         home_page.open_home_page(base_url)
-        assert home_page.is_homepage_visible()
+        assert home_page.wait_for_homepage()
         home_page.go_to_products()
         
         cart_page = CartPage(driver)

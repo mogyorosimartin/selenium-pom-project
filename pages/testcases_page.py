@@ -6,5 +6,5 @@ class TCPage(BasePage):
     TESTCASES_PROMPT = (By.XPATH, "//b[contains(text(),'Test Cases')]")
     URL = "/test_cases"
 
-    def is_test_cases_visible(self):
-        return self.is_visible(self.TESTCASES_PROMPT)
+    def wait_for_test_cases(self):
+        return self.find(self.TESTCASES_PROMPT)

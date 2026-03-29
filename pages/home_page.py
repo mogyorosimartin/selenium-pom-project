@@ -46,9 +46,9 @@ class HomePage(BasePage):
     def get_logged_in_username(self):
         return self.get_text(self.NAV_LOGGED_IN_AS)
 
-    def is_products_section_visible(self):
-        return self.is_visible(self.PRODUCTS_SECTION)
+    def wait_for_products_section(self):
+        return self.find(self.PRODUCTS_SECTION)
     
-    def is_homepage_visible(self):
-        return self.is_visible(self.CAROUSEL)
+    def wait_for_homepage(self):
+        return self.find(self.CAROUSEL)
     

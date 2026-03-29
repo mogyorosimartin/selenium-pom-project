@@ -29,11 +29,11 @@ class ContactPage(BasePage):
     def submit_form(self ):
         self.click(self.SUBMIT_BUTTON)
 
-    def is_success_message_visible(self):
-        return self.is_visible(self.SUCCESS_MESSAGE)
+    def wait_for_success_message(self):
+        return self.find(self.SUCCESS_MESSAGE)
     
-    def is_visible_getintouch(self):
-        return self.is_visible(self.GETINTOUCH_MESSAGE)
+    def wait_for_getintouch(self):
+        return self.find(self.GETINTOUCH_MESSAGE)
     
     def file_upload(self, file_path):
         self.driver.find_element(*self.FILE_INPUT).send_keys(file_path)

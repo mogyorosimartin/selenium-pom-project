@@ -28,6 +28,7 @@ class RegisterPage(BasePage):
     LOGGED_IN = (By.XPATH, "//a[contains(., 'Logged in as')]")
     DELETE_BTN = (By.CSS_SELECTOR, ".fa.fa-trash-o")
     ACCOUNT_DELETED = (By.XPATH, "//b[contains(text(), 'Account Deleted!')]")
+    ERROR_MESSAGE = (By.CSS_SELECTOR, "p[style*='color: red']")
     
 
     URL = "/signup"
@@ -60,19 +61,21 @@ class RegisterPage(BasePage):
         self.type(self.REGISTER_MOBILE,user_data["mobile_number"])
         self.click(self.SIGNUP_BUTTON)
         
+    def wait_for_signup_page(self):
+        self.wait_for_url(self.URL)
         
     def get_error_message(self):
         return self.get_text(self.ERROR_MESSAGE)
 
-    def is_error_displayed(self):
-        return self.is_visible(self.ERROR_MESSAGE)
+    def wait_for_error(self):
+        return self.find(self.ERROR_MESSAGE)
     
-    def is_account_info_visible(self):
-        return self.is_visible(self.ENTER_ACCOUNT_TITLE)
+    def wait_for_account_info(self):
+        return self.find(self.ENTER_ACCOUNT_TITLE)
     
     
-    def is_account_created_visible(self):
-        return self.is_visible(self.ACCOUNT_CREATED_TEXT)
+    def wait_for_account_created(self):
+        return self.find(self.ACCOUNT_CREATED_TEXT)
     
     def is_user_logged_in(self, name):
         return name in self.get_text(self.LOGGED_IN)
@@ -80,8 +83,8 @@ class RegisterPage(BasePage):
     def delete_account(self):
         self.click(self.DELETE_BTN)
         
-    def is_account_deleted_visible(self):
-        return self.is_visible(self.ACCOUNT_DELETED)
+    def wait_for_account_deleted(self):
+        return self.find(self.ACCOUNT_DELETED)
     
     def click_continue(self):
         self.click(self.CONTINUE_BUTTON)

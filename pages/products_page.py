@@ -22,11 +22,11 @@ class ProductsPage(BasePage):
     def has_results(self):
         return self.is_visible(self.SEARCH_RESULTS)
     
-    def is_searched_products_visible(self):
-        return self.is_visible(self.SEARCHED_PRODUCTS_PROMPT)
+    def wait_for_searched_products(self):
+        return self.find(self.SEARCHED_PRODUCTS_PROMPT)
 
     def get_no_results_text(self):
         return self.get_text(self.NO_RESULTS_TEXT)
     
-    def is_products_visible(self):
-        return self.is_visible(self.ALL_PRODUCTS_PROMPT)
+    def wait_for_products(self):
+        return self.find(self.ALL_PRODUCTS_PROMPT)

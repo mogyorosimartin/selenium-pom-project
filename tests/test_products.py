@@ -10,25 +10,25 @@ class TestProducts:
     def test_search_valid_product(self, driver, base_url):
         home_page = HomePage(driver)
         home_page.open_home_page(base_url)
-        assert home_page.is_homepage_visible()
+        assert home_page.wait_for_homepage()
         home_page.go_to_products()
         
         search = ProductsPage(driver)
-        assert search.is_products_visible()
+        assert search.wait_for_products()
         search.search(SEARCH_TERMS["valid"])
-        assert search.is_searched_products_visible()
+        assert search.wait_for_searched_products()
 
         assert  search.has_results()
 
     def test_search_invalid_product(self, driver, base_url):
         home_page = HomePage(driver)
         home_page.open_home_page(base_url)
-        assert home_page.is_homepage_visible()
+        assert home_page.wait_for_homepage()
         home_page.go_to_products()
         
         search = ProductsPage(driver)
-        assert search.is_products_visible()
+        assert search.wait_for_products()
         search.search(SEARCH_TERMS["invalid"])
-        assert search.is_searched_products_visible()
+        assert search.wait_for_searched_products()
 
         assert not search.has_results()

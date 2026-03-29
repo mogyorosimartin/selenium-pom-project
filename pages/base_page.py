@@ -35,10 +35,8 @@ class BasePage:
         return self.find(locator).text
 
     def is_visible(self, locator):
-        try:
-            return self.wait.until(EC.visibility_of_element_located(locator))
-        except:
-            return False
+        elements = self.driver.find_elements(*locator)
+        return len(elements) > 0 and elements[0].is_displayed()
 
     def wait_for_url(self, partial_url):
         self.wait.until(EC.url_contains(partial_url))

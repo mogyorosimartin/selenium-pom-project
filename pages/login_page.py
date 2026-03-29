@@ -30,18 +30,18 @@ class LoginPage(BasePage):
         self.type(self.SIGNUP_EMAIL, email)
         self.click(self.SIGNUP_BUTTON)
     
-    def signup_visible(self):
-        return self.is_visible(self.SIGNUP_PROMPT)
+    def wait_for_signup(self):
+        return self.find(self.SIGNUP_PROMPT)
 
 
     def get_error_message(self):
         return self.get_text(self.ERROR_MESSAGE)
 
-    def is_error_displayed(self):
-        return self.is_visible(self.ERROR_MESSAGE)
+    def wait_for_error(self):
+        return self.find(self.ERROR_MESSAGE)
     
-    def is_Login_Prompt_visible(self):
-        return self.is_visible(self.LOGIN_PROMPT)
+    def wait_for_Login_Prompt(self):
+        return self.find(self.LOGIN_PROMPT)
     
     def logout(self):
         self.click(self.LOGOUT_BUTTON)

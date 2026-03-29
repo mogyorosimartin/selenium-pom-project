@@ -9,24 +9,24 @@ class TestLogin:
     def test_login_with_invalid_credentials(self, driver, base_url):
         home_page = HomePage(driver)
         home_page.open_home_page(base_url)
-        assert home_page.is_homepage_visible()
+        assert home_page.wait_for_homepage()
         home_page.go_to_login()
         
         login_page = LoginPage(driver)
-        assert login_page.is_Login_Prompt_visible()
+        assert login_page.wait_for_Login_Prompt()
         login_page.login("wrong@email.com", "wrongpassword")
 
-        assert login_page.is_error_displayed()
+        assert login_page.wait_for_error()
         assert "incorrect" in login_page.get_error_message().lower()
     @pytest.mark.smoke
     def test_login_with_valid_credentials(self, driver, base_url):
         home_page = HomePage(driver)
         home_page.open_home_page(base_url)
-        assert home_page.is_homepage_visible()
+        assert home_page.wait_for_homepage()
         home_page.go_to_login()
         
         login_page = LoginPage(driver)
-        assert login_page.is_Login_Prompt_visible()
+        assert login_page.wait_for_Login_Prompt()
         login_page.login(
             os.getenv("TEST_EMAIL"),
             os.getenv("TEST_PASSWORD")
@@ -52,17 +52,17 @@ class TestLogin:
         login_page.open_login_page(base_url)
         login_page.login("notregistered@example.com", "somepassword")
 
-        assert login_page.is_error_displayed()
+        assert login_page.wait_for_error()
         assert "incorrect" in login_page.get_error_message().lower()
         
     def test_login_logout(self, driver, base_url):
         home_page = HomePage(driver)
         home_page.open_home_page(base_url)
-        assert home_page.is_homepage_visible()
+        assert home_page.wait_for_homepage()
         home_page.go_to_login()
         
         login_page = LoginPage(driver)
-        assert login_page.is_Login_Prompt_visible()
+        assert login_page.wait_for_Login_Prompt()
         login_page.login(
             os.getenv("TEST_EMAIL"),
             os.getenv("TEST_PASSWORD")
@@ -74,4 +74,4 @@ class TestLogin:
         assert len(username) > 0
         
         login_page.logout()
-        assert login_page.is_Login_Prompt_visible()
+        assert login_page.wait_for_Login_Prompt()
