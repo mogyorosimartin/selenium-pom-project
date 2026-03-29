@@ -18,6 +18,7 @@ class TestRegister:
         register_page.wait_for_signup_page()
         assert register_page.wait_for_account_info()
         register_page.register(REGISTER_USER)
+        assert register_page.wait_for_account_created()
         register_page.click_continue()
         assert register_page.is_user_logged_in(REGISTER_USER["name"])
         register_page.delete_account()

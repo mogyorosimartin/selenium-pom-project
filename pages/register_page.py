@@ -79,11 +79,8 @@ class RegisterPage(BasePage):
         return self.find(self.ACCOUNT_CREATED_TEXT)
     
     def is_user_logged_in(self, name):
-        try:
             element = self.find(self.LOGGED_IN)
             return name in element.text
-        except:
-            return False
     
     def delete_account(self):
         self.click(self.DELETE_BTN)
