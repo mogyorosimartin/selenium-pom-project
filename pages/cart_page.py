@@ -1,7 +1,7 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains
 from pages.base_page import BasePage
-
+from selenium.webdriver.support import expected_conditions as EC
 
 
 
@@ -24,7 +24,7 @@ class CartPage(BasePage):
         actions.move_to_element(product).perform()
 
         add_btn = product.find_element(By.XPATH, ".//a[contains(text(),'Add to cart')]")
-        add_btn.click()
+        self.driver.execute_script("arguments[0].click();", add_btn)
     
     def click_continue(self):
         self.click(self.CONTINUE_BTN)
