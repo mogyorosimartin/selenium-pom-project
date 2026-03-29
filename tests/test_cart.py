@@ -14,5 +14,7 @@ class TestCart:
         cart_page.click_continue()
         cart_page.add_to_cart(2)
         cart_page.click_cart()
-        cart_page.verify_cart(2)
+        assert  2 == len(cart_page.get_cart_items())
+        for price, quantity, total in cart_page.get_cart_data():
+            assert total == price * quantity
         

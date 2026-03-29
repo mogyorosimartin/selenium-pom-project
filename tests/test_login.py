@@ -1,4 +1,5 @@
 import os
+
 import pytest
 from pages.login_page import LoginPage
 from pages.home_page import HomePage
@@ -17,7 +18,7 @@ class TestLogin:
 
         assert login_page.is_error_displayed()
         assert "incorrect" in login_page.get_error_message().lower()
-
+    @pytest.mark.smoke
     def test_login_with_valid_credentials(self, driver, base_url):
         home_page = HomePage(driver)
         home_page.open_home_page(base_url)

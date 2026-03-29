@@ -1,7 +1,5 @@
-from pytest import File
 from selenium.webdriver.common.by import By
 from pages.base_page import BasePage
-import os
 
 
 

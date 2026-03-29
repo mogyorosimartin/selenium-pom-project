@@ -32,9 +32,12 @@ class CartPage(BasePage):
     def click_cart(self):
         self.click(self.VIEW_CART_BTN)
     
-    def verify_cart(self, number):
+    def get_cart_items(self):
+        return self.driver.find_elements(*self.CART_ROWS)
+    
+    def get_cart_data(self):
         cart_rows = self.driver.find_elements(*self.CART_ROWS)
-        assert len(cart_rows) == number
+        data = []
         for row in cart_rows:
             price_text = row.find_element(*self.PRICE_TEXT).text
             quantity_text = row.find_element(*self.QUANTITY_TEXT).text
@@ -44,4 +47,7 @@ class CartPage(BasePage):
             quantity = int(quantity_text.strip())
             total = int(total_text.replace("Rs. ", "").strip())
 
-            assert total == price * quantity
+            data.append((price, quantity, total))
+    
+        return data
+            

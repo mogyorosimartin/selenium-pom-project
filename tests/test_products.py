@@ -1,10 +1,12 @@
 import pytest
+
 from pages.home_page import HomePage
 from pages.products_page import ProductsPage
 from utils.test_data import SEARCH_TERMS
 
 
 class TestProducts:
+    @pytest.mark.smoke
     def test_search_valid_product(self, driver, base_url):
         home_page = HomePage(driver)
         home_page.open_home_page(base_url)

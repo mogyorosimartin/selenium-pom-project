@@ -1,5 +1,5 @@
-import os
 import pytest
+
 from pages.login_page import LoginPage
 from pages.home_page import HomePage
 from pages.register_page import RegisterPage
@@ -8,6 +8,7 @@ from utils.test_data import EXISTING_EMAIL
 
 
 class TestRegister:
+    @pytest.mark.smoke
     def test_register_with_valid_info(self, driver, base_url):
         login_page = LoginPage(driver)
         login_page.open_login_page(base_url)

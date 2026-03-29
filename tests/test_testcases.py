@@ -1,4 +1,3 @@
-import pytest
 from pages.home_page import HomePage
 from pages.testcases_page import TCPage
 
