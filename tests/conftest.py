@@ -19,7 +19,7 @@ def driver():
     options.add_experimental_option("prefs", {
         "profile.default_content_setting_values.ads": 2,
     })
-    #options.add_argument("--headless")
+    options.add_argument("--headless")
     
     driver = webdriver.Chrome(
         service=Service(ChromeDriverManager().install()),
