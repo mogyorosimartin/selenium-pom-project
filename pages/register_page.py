@@ -60,6 +60,7 @@ class RegisterPage(BasePage):
         self.type(self.REGISTER_ZIPCODE,user_data["zipcode"])
         self.type(self.REGISTER_MOBILE,user_data["mobile_number"])
         self.click(self.SIGNUP_BUTTON)
+        self.wait_for_account_created() 
         
     def wait_for_signup_page(self):
         self.wait_for_url(self.URL)
@@ -88,4 +89,5 @@ class RegisterPage(BasePage):
     
     def click_continue(self):
         self.click(self.CONTINUE_BUTTON)
+        self.wait_for_url("/")
     
