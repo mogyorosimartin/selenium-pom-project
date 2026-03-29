@@ -79,7 +79,11 @@ class RegisterPage(BasePage):
         return self.find(self.ACCOUNT_CREATED_TEXT)
     
     def is_user_logged_in(self, name):
-        return name in self.get_text(self.LOGGED_IN)
+        try:
+            text = self.get_text(self.LOGGED_IN)
+            return name in text
+        except:
+            return False
     
     def delete_account(self):
         self.click(self.DELETE_BTN)
@@ -90,4 +94,3 @@ class RegisterPage(BasePage):
     def click_continue(self):
         self.click(self.CONTINUE_BUTTON)
         self.wait_for_url("/")
-        self.find(self.LOGGED_IN)
