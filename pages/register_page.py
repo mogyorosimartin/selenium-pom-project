@@ -90,4 +90,4 @@ class RegisterPage(BasePage):
     def click_continue(self):
         self.click(self.CONTINUE_BUTTON)
         self.wait_for_url("/")
-    
+        self.find(self.LOGGED_IN)
