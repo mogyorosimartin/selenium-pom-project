@@ -80,8 +80,8 @@ class RegisterPage(BasePage):
     
     def is_user_logged_in(self, name):
         try:
-            text = self.get_text(self.LOGGED_IN)
-            return name in text
+            element = self.find(self.LOGGED_IN)
+            return name in element.text
         except:
             return False
     
